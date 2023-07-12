@@ -1,0 +1,24 @@
+{
+  "name": "travel-nest-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "module": "nodenext",
+  "moduleResolution": "nodenext",
+  "esModuleInterop": true,
+
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^20.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
