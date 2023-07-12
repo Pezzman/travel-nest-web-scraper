@@ -5,14 +5,14 @@ export async function getPropertyAmenities(
   page: Page,
   selector: string
 ): Promise<Amenity[]> {
-  await ClickAmenitiesButton(page, selector);
-  const dialog = await GetAmenitiesDialog(page);
-  const headers = await GetAmenityHeaders(dialog);
-  const amenities = await GetAmenityDetails(page, headers);
+  await clickAmenitiesButton(page, selector);
+  const dialog = await getAmenitiesDialog(page);
+  const headers = await getAmenityHeaders(dialog);
+  const amenities = await getAmenityDetails(page, headers);
   return amenities;
 }
 
-async function ClickAmenitiesButton(page: Page, selector: string) {
+async function clickAmenitiesButton(page: Page, selector: string) {
   const buttonSelector = `${selector} button`;
   await page.waitForSelector(buttonSelector);
   const button = await page.$(buttonSelector);
@@ -20,14 +20,14 @@ async function ClickAmenitiesButton(page: Page, selector: string) {
   await button.click();
 }
 
-async function GetAmenitiesDialog(page: Page) {
+async function getAmenitiesDialog(page: Page) {
   const dialogSelector =
     '[data-testid="modal-container"] [aria-label="What this place offers"]';
   await page.waitForSelector(dialogSelector);
   return await page.$(dialogSelector);
 }
 
-async function GetAmenityHeaders(dialog: ElementHandle<Element>) {
+async function getAmenityHeaders(dialog: ElementHandle<Element>) {
   const amenityHeadings = (
     await dialog.evaluate((e) => {
       let amenityHeadings = [];
@@ -41,7 +41,7 @@ async function GetAmenityHeaders(dialog: ElementHandle<Element>) {
   return amenityHeadings;
 }
 
-async function GetAmenityDetails(page: Page, headers: string[]) {
+async function getAmenityDetails(page: Page, headers: string[]) {
   const amenities = [];
   for (let heading of headers) {
     const id = CreateIdFromHeading(heading);
