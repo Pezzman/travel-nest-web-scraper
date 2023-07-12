@@ -1,9 +1,15 @@
 import puppeteer from "puppeteer";
 import { scrapeListing, } from "./scraping/airbnb/scrape-listing.js";
 import util from "util";
-/* Known Issues
+/*
+ Known Issues
 - Privacy policy modal can appear and break tests
 - Amenity Header 'Location Features' doesnt match the element id rule "location", there could be more cases
+
+Next actions would be
+- Make the tests more durable with retries and privacy policy modal handling
+- Ability to pipe in a list of listing IDs
+- Look into scraping more than 1 listing at a time
 */
 async function start() {
     const browser = await puppeteer.launch();
